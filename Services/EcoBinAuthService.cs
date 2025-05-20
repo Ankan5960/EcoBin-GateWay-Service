@@ -1,19 +1,20 @@
 using EcoBin_GateWay_Service.DTOs.Requests;
+using EcoBin_GateWay_Service.Model.DTOs;
 using EcoBin_GateWay_Service.Services.Contracts;
 
 namespace EcoBin_GateWay_Service.Services;
 
-public class EcoBinAuthService : IEcoBinAuthService
+public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
 {
-    private readonly string _baseUrl;
-    public EcoBinAuthService(IConfiguration configuration)
+    public EcoBinAuthService(HttpClient httpClient) : base(httpClient)
     {
-        _baseUrl = configuration["ApiBaseUrls:EcoBinAuthService"] ?? throw new ArgumentNullException("ApiBaseUrls:EcoBinAuthService");
+
     }
 
-    public Task<Guid> SignupAsync(SignupRequestDto signupRequest)
+    public async Task<AuthDto> LoginAsync(string url, LoginRequestDto loginRequest)
     {
-        return null;
+        var response = await PostAsync<LoginRequestDto, AuthDto>(url, loginRequest);
+        ArgumentNullException.ThrowIfNull(response);
+        return response;
     }
-
 }
