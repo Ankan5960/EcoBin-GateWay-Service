@@ -1,0 +1,6 @@
+@EcoBin_GateWay_Service_HostAddress = http://localhost:5249
+
+GET {{EcoBin_GateWay_Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
