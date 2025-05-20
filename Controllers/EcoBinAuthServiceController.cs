@@ -19,16 +19,16 @@ public class EcoBinAuthServiceController : ControllerBase
     [HttpPost("signup")]
     public async Task<IActionResult> Signup([FromBody] SignupRequestDto signupRequest)
     {
-        var userId = await _serviceManager.EcoBinAuthService.;
+        var userId = await _serviceManager.EcoBinAuthService.SignupAsync(signupRequest);
         return Ok(new { UserId = userId });
     }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequest)
-    {
-        var result = await _serviceManager.EcoBinAuthService.LoginAsync(loginRequest);
-        return Ok(result);
-    }
+    // [HttpPost("login")]
+    // public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequest)
+    // {
+    //     var result = await _serviceManager.EcoBinAuthService.LoginAsync(loginRequest);
+    //     return Ok(result);
+    // }
 
     // [HttpPost("db-migrate")]
     // public async Task<IActionResult> Migrate([FromBody] string key)
@@ -37,13 +37,13 @@ public class EcoBinAuthServiceController : ControllerBase
     //     return Ok(response);
     // }
 
-    [HttpPost("create")]
-    public async Task<IActionResult> CreateRegistrationKey([FromBody] Guid roleId)
-    {
-        if (roleId == Guid.Empty)
-            throw new BadRequestException("Role ID is required.");
+    // [HttpPost("create")]
+    // public async Task<IActionResult> CreateRegistrationKey([FromBody] Guid roleId)
+    // {
+    //     if (roleId == Guid.Empty)
+    //         throw new BadRequestException("Role ID is required.");
 
-        var key = await _serviceManager.RegistrationKeysService.CreateRegistrationKeyAsync(roleId);
-        return Ok(key);
-    }
+    //     var key = await _serviceManager.RegistrationKeysService.CreateRegistrationKeyAsync(roleId);
+    //     return Ok(key);
+    // }
 }
