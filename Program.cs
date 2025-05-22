@@ -9,11 +9,17 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 builder.Services.InjectService();
 builder.Services.AddControllers();
+builder.Services.ConfigureAuthentication(builder.Configuration);
+builder.Services.ConfigureAuthorization();
+builder.Services.ConfigureSwaggerGen();
 builder.Services.AddTransient<HttpClientHeaderHandler>();
 builder.Services.AddHttpClient<HttpClientBase>()
     .AddHttpMessageHandler<HttpClientHeaderHandler>();
 
 var app = builder.Build();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
 {

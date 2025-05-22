@@ -1,4 +1,5 @@
 using EcoBin_GateWay_Service.DTOs.Requests;
+using EcoBin_GateWay_Service.Extensions.Exceptions;
 using EcoBin_GateWay_Service.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,27 @@ public class EcoBinAuthServiceController : ControllerBase
         _serviceManager = serviceManager;
     }
 
+    [HttpPost("/user-auth/auth/signup")]
+    public async Task<IActionResult> Signup([FromBody] SignupRequestDto signupRequest)
+    {
+        var userId = await _serviceManager.EcoBinAuthService.SignupAsync(signupRequest);
+        return Ok(new { UserId = userId });
+    }
+
     [HttpPost("/user-auth/auth/login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequest)
     {
-        var url = "http://localhost:5117/user-auth/Auth/login";
-        var result = await _serviceManager.EcoBinAuthService.LoginAsync(url, loginRequest);
+        var result = await _serviceManager.EcoBinAuthService.LoginAsync(loginRequest);
         return Ok(result);
+    }
+
+    [HttpPost("/user-auth/RegistrationKey/create")]
+    public async Task<IActionResult> CreateRegistrationKey([FromBody] Guid roleId)
+    {
+        if (roleId == Guid.Empty)
+            throw new BadRequestException("Role ID is required.");
+
+        var key = await _serviceManager.EcoBinAuthService.CreateRegistrationKeyAsync(roleId);
+        return Ok(key);
     }
 }

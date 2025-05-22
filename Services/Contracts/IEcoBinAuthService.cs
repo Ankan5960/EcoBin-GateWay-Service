@@ -1,9 +1,12 @@
 using EcoBin_GateWay_Service.DTOs.Requests;
 using EcoBin_GateWay_Service.Model.DTOs;
+using EcoBin_GateWay_Service.Model.DTOs.Response;
 
 namespace EcoBin_GateWay_Service.Services.Contracts;
 
 public interface IEcoBinAuthService : IHttpClientBase
 {
-    Task<AuthDto> LoginAsync(string url, LoginRequestDto loginRequest);
+    Task<Guid> SignupAsync(SignupRequestDto signupRequestDto);
+    Task<AuthDto> LoginAsync(LoginRequestDto loginRequest);
+    Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(Guid roleId);
 }
