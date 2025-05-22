@@ -9,4 +9,6 @@ public class DustbinDataResponseDto
     public RegionResponseDto Region { get; set; } = new();
     public SensorDataResponseDto SensorData { get; set; } = new();
     public CategoryEntity Category { get; set; } = new();
+    public string DistanceFromUser { get; set; } = string.Empty;
+    public bool? IsDangrouse { get; set; } = null;
 }

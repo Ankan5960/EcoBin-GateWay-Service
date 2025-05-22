@@ -17,4 +17,24 @@ public class HttpClientBase : IHttpClientBase
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<TResponse>();
     }
+
+    public async Task<TResponse?> GetAsync<TResponse>(string url)
+    {
+        var response = await _httpClient.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<TResponse>();
+    }
+
+    public async Task<TResponse?> DeleteAsync<TResponse>(string url)
+    {
+        var response = await _httpClient.DeleteAsync(url);
+        response.EnsureSuccessStatusCode();
+        if (response.Content.Headers.ContentType?.MediaType == "application/json")
+        {
+            return await response.Content.ReadFromJsonAsync<TResponse>();
+        }
+
+        // Optional: Handle plain text or empty responses
+        return default;
+    }
 }

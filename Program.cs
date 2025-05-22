@@ -15,6 +15,12 @@ builder.Services.AddTransient<HttpClientHeaderHandler>();
 builder.Services.AddHttpClient<IEcoBinAuthService, EcoBinAuthService>()
     .AddHttpMessageHandler<HttpClientHeaderHandler>();
 
+builder.Services.AddHttpClient<IEcoBinSensorDataService, EcoBinSensorDataService>()
+.AddHttpMessageHandler<HttpClientHeaderHandler>();
+
+builder.Services.AddHttpClient<IEcoBinUserDataService, EcoBinUserDataService>()
+.AddHttpMessageHandler<HttpClientHeaderHandler>();
+
 var app = builder.Build();
 
 app.UseSwagger();
