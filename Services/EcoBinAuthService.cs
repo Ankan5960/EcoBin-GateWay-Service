@@ -14,12 +14,12 @@ public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
         _baseUrl = configuration["ApiBaseUrls:EcoBinAuthService"] ?? throw new ArgumentNullException("ApiBaseUrls:EcoBinAuthService");
     }
 
-    public async Task<Guid> SignupAsync(SignupRequestDto signupRequestDto)
+    public async Task<SignupResponseDto> SignupAsync(SignupRequestDto signupRequestDto)
     {
         var url = $"{_baseUrl}/user-auth/Auth/signup";
-        var response = await PostAsync<SignupRequestDto, string>(url, signupRequestDto);
+        var response = await PostAsync<SignupRequestDto, SignupResponseDto>(url, signupRequestDto);
         ArgumentNullException.ThrowIfNull(response);
-        return Guid.Parse(response);
+        return response;
     }
 
     public async Task<AuthDto> LoginAsync(LoginRequestDto loginRequest)

@@ -6,7 +6,7 @@ namespace EcoBin_GateWay_Service.Services.Contracts;
 
 public interface IEcoBinAuthService : IHttpClientBase
 {
-    Task<Guid> SignupAsync(SignupRequestDto signupRequestDto);
+    Task<SignupResponseDto> SignupAsync(SignupRequestDto signupRequestDto);
     Task<AuthDto> LoginAsync(LoginRequestDto loginRequest);
     Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(Guid roleId);
 }

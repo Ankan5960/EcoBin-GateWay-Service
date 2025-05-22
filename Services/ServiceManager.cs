@@ -8,8 +8,8 @@ public class ServiceManager : IServiceManager
 
     public IEcoBinAuthService EcoBinAuthService => _ecoBinAuthService.Value;
 
-    public ServiceManager(IConfiguration configuration, HttpClient httpClient)
+    public ServiceManager(IEcoBinAuthService ecoBinAuthService)
     {
-        _ecoBinAuthService = new Lazy<IEcoBinAuthService>(() => new EcoBinAuthService(configuration, httpClient));
+        _ecoBinAuthService = new Lazy<IEcoBinAuthService>(() => ecoBinAuthService);
     }
 }

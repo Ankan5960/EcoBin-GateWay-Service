@@ -18,8 +18,8 @@ public class EcoBinAuthServiceController : ControllerBase
     [HttpPost("/user-auth/auth/signup")]
     public async Task<IActionResult> Signup([FromBody] SignupRequestDto signupRequest)
     {
-        var userId = await _serviceManager.EcoBinAuthService.SignupAsync(signupRequest);
-        return Ok(new { UserId = userId });
+        var response = await _serviceManager.EcoBinAuthService.SignupAsync(signupRequest);
+        return Ok(response);
     }
 
     [HttpPost("/user-auth/auth/login")]
