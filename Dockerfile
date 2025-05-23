@@ -14,6 +14,6 @@ WORKDIR /app
 
 COPY --from=build /app/out .
 
-EXPOSE 6000
+EXPOSE 6010
 
 ENTRYPOINT ["dotnet", "EcoBin-GateWay-Service.dll"]

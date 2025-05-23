@@ -16,10 +16,10 @@ builder.Services.AddHttpClient<IEcoBinAuthService, EcoBinAuthService>()
     .AddHttpMessageHandler<HttpClientHeaderHandler>();
 
 builder.Services.AddHttpClient<IEcoBinSensorDataService, EcoBinSensorDataService>()
-.AddHttpMessageHandler<HttpClientHeaderHandler>();
+    .AddHttpMessageHandler<HttpClientHeaderHandler>();
 
 builder.Services.AddHttpClient<IEcoBinUserDataService, EcoBinUserDataService>()
-.AddHttpMessageHandler<HttpClientHeaderHandler>();
+    .AddHttpMessageHandler<HttpClientHeaderHandler>();
 
 var app = builder.Build();
 
