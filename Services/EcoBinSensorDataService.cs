@@ -1,6 +1,4 @@
-using EcoBin_GateWay_Service.DTOs.Requests;
 using EcoBin_GateWay_Service.Model;
-using EcoBin_GateWay_Service.Model.DTOs;
 using EcoBin_GateWay_Service.Model.DTOs.Requests;
 using EcoBin_GateWay_Service.Model.DTOs.Response;
 using EcoBin_GateWay_Service.Model.DTOs.Responses;
@@ -33,11 +31,12 @@ public class EcoBinSensorDataService : HttpClientBase, IEcoBinSensorDataService
         return response;
     }
 
-    public async Task DeleteSetupAsync(Guid dustbinId)
+    public async Task<DeleteSetupAsyncResponseDto> DeleteSetupAsync(Guid dustbinId)
     {
         var url = $"{_baseUrl}/api/DustbinSetup/deleteSetup?dustbinId={dustbinId}";
-        var response = await DeleteAsync<DustbinDetailsDataResponseModel>(url);
+        var response = await DeleteAsync<DeleteSetupAsyncResponseDto>(url);
         ArgumentNullException.ThrowIfNull(response);
+        return response;
     }
 
     public async Task<List<DustbinDataResponseDto>> GetDustbinDetailsByRegionData(RegionRequestDto regionRequestDto)
@@ -87,17 +86,19 @@ public class EcoBinSensorDataService : HttpClientBase, IEcoBinSensorDataService
         return response;
     }
 
-    public async Task UpdateSensorDataAsync(UpdateSensorDataRequestDto updateSensorDataDto)
+    public async Task<UpdateSensorDataResponseDto> UpdateSensorDataAsync(UpdateSensorDataRequestDto updateSensorDataDto)
     {
         var url = $"{_baseUrl}/api/SensorData/update-location-data";
-        var response = await PostAsync<UpdateSensorDataRequestDto, SensorUpdateResponseDto>(url, updateSensorDataDto);
+        var response = await PostAsync<UpdateSensorDataRequestDto, UpdateSensorDataResponseDto>(url, updateSensorDataDto);
         ArgumentNullException.ThrowIfNull(response);
+        return response;
     }
 
-    public async Task UpdateLocationDataAsync(UpdateLocationDataRequestDto updateLocationDataRequestDto)
+    public async Task<UpdateLocationDataResponseDto> UpdateLocationDataAsync(UpdateLocationDataRequestDto updateLocationDataRequestDto)
     {
         var url = $"{_baseUrl}/api/SensorData/update-location-data";
-        var response = await PostAsync<UpdateLocationDataRequestDto, LocationUpdateResponseDto>(url, updateLocationDataRequestDto);
+        var response = await PostAsync<UpdateLocationDataRequestDto, UpdateLocationDataResponseDto>(url, updateLocationDataRequestDto);
         ArgumentNullException.ThrowIfNull(response);
+        return response;
     }
 }

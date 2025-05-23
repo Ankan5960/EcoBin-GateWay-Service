@@ -1,5 +1,3 @@
-using EcoBin_GateWay_Service.DTOs.Requests;
-using EcoBin_GateWay_Service.Extensions.Exceptions;
 using EcoBin_GateWay_Service.Model.DTOs.Requests;
 using EcoBin_GateWay_Service.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -33,8 +31,8 @@ public class EcoBinSensorDataServiceController : ControllerBase
     [HttpDelete("/dustbinSetup/deleteSetup")]
     public async Task<IActionResult> DeleteSetup([FromQuery] Guid dustbinId)
     {
-        await _serviceManager.EcoBinSensorDataService.DeleteSetupAsync(dustbinId);
-        return Ok("Dustbin deleted succesfully");
+        var res = await _serviceManager.EcoBinSensorDataService.DeleteSetupAsync(dustbinId);
+        return Ok(res);
     }
 
     [HttpGet("/dustbin/get-dustbin-details-by-region-data")]
@@ -56,8 +54,8 @@ public class EcoBinSensorDataServiceController : ControllerBase
     {
         try
         {
-            await _serviceManager.EcoBinSensorDataService.UpdateLocationDataAsync(updateLocationDataRequestDto);
-            return Ok("Location is updated sucessfully");
+            var response = await _serviceManager.EcoBinSensorDataService.UpdateLocationDataAsync(updateLocationDataRequestDto);
+            return Ok(response);
         }
         catch (Exception ex)
         {
@@ -70,8 +68,8 @@ public class EcoBinSensorDataServiceController : ControllerBase
     {
         try
         {
-            await _serviceManager.EcoBinSensorDataService.UpdateSensorDataAsync(updateSensorDataDto);
-            return Ok("Sensor Data is updated sucessfully");
+            var response = await _serviceManager.EcoBinSensorDataService.UpdateSensorDataAsync(updateSensorDataDto);
+            return Ok(response);
         }
         catch (Exception ex)
         {

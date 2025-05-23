@@ -9,9 +9,9 @@ public interface IEcoBinSensorDataService : IHttpClientBase
 {
     Task<SetupResponseDto> SetupAsync(SetupRequestDto setupRequestDto);
     Task<DustbinDetailsDataResponseModel> GetSetupAsync(Guid dustbinId);
-    Task DeleteSetupAsync(Guid dustbinId);
+    Task<DeleteSetupAsyncResponseDto> DeleteSetupAsync(Guid dustbinId);
     Task<List<DustbinDataResponseDto>> GetDustbinDetailsByRegionData(RegionRequestDto regionRequestDto);
     Task<ReportDataResponse> GetTotalDustbinAsync();
-    Task UpdateSensorDataAsync(UpdateSensorDataRequestDto updateSensorDataDto);
-    Task UpdateLocationDataAsync(UpdateLocationDataRequestDto updateLocationDataRequestDto);
+    Task<UpdateSensorDataResponseDto> UpdateSensorDataAsync(UpdateSensorDataRequestDto updateSensorDataDto);
+    Task<UpdateLocationDataResponseDto> UpdateLocationDataAsync(UpdateLocationDataRequestDto updateLocationDataRequestDto);
 }

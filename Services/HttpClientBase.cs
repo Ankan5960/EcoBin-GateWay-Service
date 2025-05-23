@@ -29,12 +29,6 @@ public class HttpClientBase : IHttpClientBase
     {
         var response = await _httpClient.DeleteAsync(url);
         response.EnsureSuccessStatusCode();
-        if (response.Content.Headers.ContentType?.MediaType == "application/json")
-        {
-            return await response.Content.ReadFromJsonAsync<TResponse>();
-        }
-
-        // Optional: Handle plain text or empty responses
-        return default;
+        return await response.Content.ReadFromJsonAsync<TResponse>();
     }
 }

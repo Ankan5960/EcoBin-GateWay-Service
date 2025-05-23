@@ -18,7 +18,7 @@ public class EcoBinUserDataServiceController : ControllerBase
     }
 
     [HttpPost("/user-data/post-contact-us")]
-    public async Task<IActionResult> postContactUs([FromForm] ContactUsRequestDto contactUsDto)
+    public async Task<IActionResult> postContactUs([FromBody] ContactUsRequestDto contactUsDto)
     {
         var data = await _serviceManager.EcoBinUserDataService.SendContactEmail(contactUsDto);
         return Ok(data);
