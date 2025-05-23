@@ -11,11 +11,10 @@ public class ServiceManager : IServiceManager
     public IEcoBinAuthService EcoBinAuthService => _ecoBinAuthService.Value;
     public IEcoBinSensorDataService EcoBinSensorDataService => _ecoBinSensorDataService.Value;
     public IEcoBinUserDataService EcoBinUserDataService => _ecoBinUserDataService.Value;
-
-    public ServiceManager( IConfiguration configuration)
+    public ServiceManager(IEcoBinAuthService ecoBinAuthService, IEcoBinSensorDataService ecoBinSensorDataService, IEcoBinUserDataService ecoBinUserDataService)
     {
-        _ecoBinAuthService = new Lazy<IEcoBinAuthService>(() => new EcoBinAuthService(configuration));
-        _ecoBinSensorDataService = new Lazy<IEcoBinSensorDataService>(() => new EcoBinSensorDataService(configuration));
-        _ecoBinUserDataService = new Lazy<IEcoBinUserDataService>(() => new EcoBinUserDataService(configuration));
+        _ecoBinAuthService = new Lazy<IEcoBinAuthService>(() => ecoBinAuthService);
+        _ecoBinSensorDataService = new Lazy<IEcoBinSensorDataService>(() => ecoBinSensorDataService);
+        _ecoBinUserDataService = new Lazy<IEcoBinUserDataService>(() => ecoBinUserDataService);
     }
 }

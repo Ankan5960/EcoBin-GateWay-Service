@@ -1,12 +1,14 @@
+using EcoBin_GateWay_Service.DTOs.Requests;
+using EcoBin_GateWay_Service.Extensions.Exceptions;
+using EcoBin_GateWay_Service.Model.DTOs;
 using EcoBin_GateWay_Service.Model.DTOs.Requests;
 using EcoBin_GateWay_Service.Services.Contracts;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoBin_GateWay_Service.Controllers;
 
 [ApiController]
-[Route("ecobin-gateway[controller]")]
+[Route("ecobin-gateway")]
 public class EcoBinUserDataServiceController : ControllerBase
 {
     private readonly IServiceManager _serviceManager;
@@ -15,33 +17,31 @@ public class EcoBinUserDataServiceController : ControllerBase
         _serviceManager = serviceManager;
     }
 
-    [HttpPost("post-contact-us")]
-    public async Task<IActionResult> postContactUs([FromForm] ContactUsDto contactUsDto)
+    [HttpPost("/user-data/post-contact-us")]
+    public async Task<IActionResult> postContactUs([FromBody] ContactUsRequestDto contactUsDto)
     {
-        var data = await _serviceManager.EmailService.SendContactEmail(contactUsDto);
+        var data = await _serviceManager.EcoBinUserDataService.SendContactEmail(contactUsDto);
         return Ok(data);
     }
     
-    [HttpGet("get-user-dustbin-data")]
+    [HttpGet("/user-data/get-user-dustbin-data")]
     public async Task<IActionResult> GetUserDustbinData([FromQuery] UserLocationRequestDto regionRequestDto)
     {
-        var data = await _serviceManager.DustbinApiService.GetUserDustbinDataAsync(regionRequestDto);
+        var data = await _serviceManager.EcoBinUserDataService.GetUserDustbinDataAsync(regionRequestDto);
         return Ok(data);
     }
 
-    [Authorize(Policy = "AdminOnly")]
-    [HttpGet("get-collector-dustbin-data")]
+    [HttpGet("/user-data/get-collector-dustbin-data")]
     public async Task<IActionResult> GetCollectorDustbinData([FromQuery] CollectorLocationRequestDto collectorLocationRequestDto)
     {
-        var data = await _serviceManager.DustbinApiService.GetCollectorDustbinDataAsync(collectorLocationRequestDto);
+        var data = await _serviceManager.EcoBinUserDataService.GetCollectorDustbinDataAsync(collectorLocationRequestDto);
         return Ok(data);
     }
 
-    [Authorize(Policy = "AdminOnly")]
-    [HttpGet("get-collect-path")]
+    [HttpGet("/user-data/get-collect-path")]
     public async Task<IActionResult> GetCollectPath([FromQuery] CollectorLocationRequestDto collectorLocationRequestDto)
     {
-        var data = await _serviceManager.DustbinApiService.GetCollectPathAsync(collectorLocationRequestDto);
+        var data = await _serviceManager.EcoBinUserDataService.GetCollectPathAsync(collectorLocationRequestDto);
         return Ok(data);
     }
 }
