@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
+builder.Services.ConfigureCors();
 builder.Services.InjectService();
 builder.Services.AddControllers();
 builder.Services.ConfigureSwaggerGen();

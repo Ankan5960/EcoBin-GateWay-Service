@@ -1,5 +1,6 @@
 using EcoBin_GateWay_Service.Model.DTOs;
 using EcoBin_GateWay_Service.Model.DTOs.Requests;
+using EcoBin_GateWay_Service.Model.DTOs.response;
 using EcoBin_GateWay_Service.Model.DTOs.Responses;
 using EcoBin_GateWay_Service.Services.Contracts;
 
@@ -14,10 +15,10 @@ public class EcoBinUserDataService : HttpClientBase, IEcoBinUserDataService
         _baseUrl = configuration["ApiBaseUrls:EcoBinUserDataService"] ?? throw new ArgumentNullException("ApiBaseUrls:EcoBinUserDataService");
     }
 
-    public async Task<bool> SendContactEmail(ContactUsRequestDto contactUsDto)
+    public async Task<ContactUsResponseDto> SendContactEmail(ContactUsRequestDto contactUsDto)
     {
         var url = $"{_baseUrl}/api/ContactUs/post-contact-us";
-        var response = await PostAsync<ContactUsRequestDto, bool>(url, contactUsDto);
+        var response = await PostAsync<ContactUsRequestDto, ContactUsResponseDto>(url, contactUsDto);
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }
