@@ -17,28 +17,28 @@ public class EcoBinUserDataServiceController : ControllerBase
         _serviceManager = serviceManager;
     }
 
-    [HttpPost("/user-data/post-contact-us")]
+    [HttpPost("/api/user-data/post-contact-us")]
     public async Task<IActionResult> postContactUs([FromBody] ContactUsRequestDto contactUsDto)
     {
         var data = await _serviceManager.EcoBinUserDataService.SendContactEmail(contactUsDto);
         return Ok(data);
     }
     
-    [HttpGet("/user-data/get-user-dustbin-data")]
+    [HttpGet("/api/user-data/get-user-dustbin-data")]
     public async Task<IActionResult> GetUserDustbinData([FromQuery] UserLocationRequestDto regionRequestDto)
     {
         var data = await _serviceManager.EcoBinUserDataService.GetUserDustbinDataAsync(regionRequestDto);
         return Ok(data);
     }
 
-    [HttpGet("/user-data/get-collector-dustbin-data")]
+    [HttpGet("/api/user-data/get-collector-dustbin-data")]
     public async Task<IActionResult> GetCollectorDustbinData([FromQuery] CollectorLocationRequestDto collectorLocationRequestDto)
     {
         var data = await _serviceManager.EcoBinUserDataService.GetCollectorDustbinDataAsync(collectorLocationRequestDto);
         return Ok(data);
     }
 
-    [HttpGet("/user-data/get-collect-path")]
+    [HttpGet("/api/user-data/get-collect-path")]
     public async Task<IActionResult> GetCollectPath([FromQuery] CollectorLocationRequestDto collectorLocationRequestDto)
     {
         var data = await _serviceManager.EcoBinUserDataService.GetCollectPathAsync(collectorLocationRequestDto);

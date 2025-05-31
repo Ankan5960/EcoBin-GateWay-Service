@@ -14,42 +14,42 @@ public class EcoBinSensorDataServiceController : ControllerBase
         _serviceManager = serviceManager;
     }
 
-    [HttpPost("/dustbinSetup/setup")]
+    [HttpPost("/api/dustbinSetup/setup")]
     public async Task<IActionResult> Setup([FromBody] SetupRequestDto signupRequest)
     {
         var dustbinId = await _serviceManager.EcoBinSensorDataService.SetupAsync(signupRequest);
         return Ok(dustbinId);
     }
 
-    [HttpGet("/dustbinSetup/getsetup")]
+    [HttpGet("/api/dustbinSetup/getsetup")]
     public async Task<IActionResult> GetSetup([FromQuery] Guid dustbinId)
     {
         var dustbin = await _serviceManager.EcoBinSensorDataService.GetSetupAsync(dustbinId);
         return Ok(dustbin);
     }
 
-    [HttpDelete("/dustbinSetup/deleteSetup")]
+    [HttpDelete("/api/dustbinSetup/deleteSetup")]
     public async Task<IActionResult> DeleteSetup([FromQuery] Guid dustbinId)
     {
         var res = await _serviceManager.EcoBinSensorDataService.DeleteSetupAsync(dustbinId);
         return Ok(res);
     }
 
-    [HttpGet("/dustbin/get-dustbin-details-by-region-data")]
+    [HttpGet("/api/dustbin/get-dustbin-details-by-region-data")]
     public async Task<IActionResult> GetDustbinDetailsByCityData([FromQuery] RegionRequestDto regionRequestDto)
     {
         var result = await _serviceManager.EcoBinSensorDataService.GetDustbinDetailsByRegionData(regionRequestDto);
         return Ok(result);
     }
 
-    [HttpGet("/report-data/getReportData")]
+    [HttpGet("/api/report-data/getReportData")]
     public async Task<IActionResult> GetReportData()
     {
         var result = await _serviceManager.EcoBinSensorDataService.GetTotalDustbinAsync();
         return Ok(result);
     }
 
-    [HttpPost("/sensor-data/update-location-data")]
+    [HttpPost("/api/sensor-data/update-location-data")]
     public async Task<IActionResult> UpdateLocationData([FromBody] UpdateLocationDataRequestDto updateLocationDataRequestDto)
     {
         try
@@ -63,7 +63,7 @@ public class EcoBinSensorDataServiceController : ControllerBase
         }
     }
 
-    [HttpPost("/sensor-data/update-sensor-data")]
+    [HttpPost("/api/sensor-data/update-sensor-data")]
     public async Task<IActionResult> UpdateSensorData([FromBody] UpdateSensorDataRequestDto updateSensorDataDto)
     {
         try
