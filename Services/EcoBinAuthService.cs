@@ -37,4 +37,12 @@ public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }
+
+    public Task<IEnumerable<RoleIdResponseDto>?> GetRoleIdAsync()
+    {
+        var url = $"{_baseUrl}/user-auth/RoleId/get-role-id";
+        var response = GetAsync<IEnumerable<RoleIdResponseDto>>(url);
+        ArgumentNullException.ThrowIfNull(response);
+        return response;
+    }
 }

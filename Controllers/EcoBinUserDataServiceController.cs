@@ -1,5 +1,3 @@
-using EcoBin_GateWay_Service.DTOs.Requests;
-using EcoBin_GateWay_Service.Extensions.Exceptions;
 using EcoBin_GateWay_Service.Model.DTOs;
 using EcoBin_GateWay_Service.Model.DTOs.Requests;
 using EcoBin_GateWay_Service.Services.Contracts;

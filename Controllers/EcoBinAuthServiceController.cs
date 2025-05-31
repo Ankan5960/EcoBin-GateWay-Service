@@ -38,4 +38,11 @@ public class EcoBinAuthServiceController : ControllerBase
         var key = await _serviceManager.EcoBinAuthService.CreateRegistrationKeyAsync(roleId);
         return Ok(key);
     }
+
+    [HttpGet("/api/user-auth/RegistrationKey/get-role-id")]
+    public async Task<IActionResult> GetRoleId()
+    {
+        var key = await _serviceManager.EcoBinAuthService.GetRoleIdAsync();
+        return Ok(key);
+    }
 }
