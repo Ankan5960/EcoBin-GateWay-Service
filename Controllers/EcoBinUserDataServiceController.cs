@@ -21,7 +21,7 @@ public class EcoBinUserDataServiceController : ControllerBase
         var data = await _serviceManager.EcoBinUserDataService.SendContactEmail(contactUsDto);
         return Ok(data);
     }
-    
+
     [HttpGet("/api/user-data/get-user-dustbin-data")]
     public async Task<IActionResult> GetUserDustbinData([FromQuery] UserLocationRequestDto regionRequestDto)
     {
@@ -40,6 +40,13 @@ public class EcoBinUserDataServiceController : ControllerBase
     public async Task<IActionResult> GetCollectPath([FromQuery] CollectorLocationRequestDto collectorLocationRequestDto)
     {
         var data = await _serviceManager.EcoBinUserDataService.GetCollectPathAsync(collectorLocationRequestDto);
+        return Ok(data);
+    }
+    
+    [HttpGet("/api/user-data/get-user-path")]
+    public async Task<IActionResult> GetUserPath([FromQuery] UserLocationRequestDto userLocationRequestDto)
+    {
+        var data = await _serviceManager.EcoBinUserDataService.GetUserPathAsync(userLocationRequestDto);
         return Ok(data);
     }
 }

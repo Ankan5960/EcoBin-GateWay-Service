@@ -46,4 +46,12 @@ public class EcoBinUserDataService : HttpClientBase, IEcoBinUserDataService
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }
+
+    public async Task<DirectionsResponseDto> GetUserPathAsync(UserLocationRequestDto userLocation)
+    {
+        var url = $"{_baseUrl}/api/DustbinData/get-user-path?Latitude={userLocation.Latitude}&Longitude={userLocation.Longitude}";
+        var response = await GetAsync<DirectionsResponseDto>(url);
+        ArgumentNullException.ThrowIfNull(response);
+        return response;
+    }
 }

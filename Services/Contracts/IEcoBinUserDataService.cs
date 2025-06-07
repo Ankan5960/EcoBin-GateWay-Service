@@ -11,4 +11,5 @@ public interface IEcoBinUserDataService : IHttpClientBase
     Task<List<DustbinDataResponseDto>> GetUserDustbinDataAsync(UserLocationRequestDto userlocation);
     Task<List<DustbinDataResponseDto>> GetCollectorDustbinDataAsync(CollectorLocationRequestDto collectorLocation);
     Task<DirectionsResponseDto> GetCollectPathAsync(CollectorLocationRequestDto collectorLocation);
+    Task<DirectionsResponseDto> GetUserPathAsync(UserLocationRequestDto userLocation);
 }
