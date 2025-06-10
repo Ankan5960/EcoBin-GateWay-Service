@@ -1,5 +1,6 @@
 using EcoBin_Auth_Service.Extensions;
 using EcoBin_GateWay_Service.Extension.Helpers;
+using EcoBin_GateWay_Service.Extensions.Exceptions;
 using EcoBin_GateWay_Service.Services;
 using EcoBin_GateWay_Service.Services.Contracts;
 
@@ -28,6 +29,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.MapControllers();
+app.ConfigureExceptionHandler(app.Logger);
 app.UseCors("CorsPolicy");
 
 app.Run();
