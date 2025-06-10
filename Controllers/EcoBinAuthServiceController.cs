@@ -46,4 +46,11 @@ public class EcoBinAuthServiceController : ControllerBase
         var res = await _serviceManager.EcoBinAuthService.GetRoleIdAsync();
         return Ok(res);
     }
+
+    [HttpPost("/api/user-auth/Auth/refresh-token")]
+    public async Task<IActionResult> PostRefreshToken([FromBody] RefreshTokenRequestDto request)
+    {
+        var res = await _serviceManager.EcoBinAuthService.PostRefreshTokenAsync(request);
+        return Ok(res);
+    }
 }
