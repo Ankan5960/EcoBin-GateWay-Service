@@ -1,5 +1,6 @@
 using EcoBin_GateWay_Service.DTOs.Requests;
 using EcoBin_GateWay_Service.Model.DTOs;
+using EcoBin_GateWay_Service.Model.DTOs.Requests;
 using EcoBin_GateWay_Service.Model.DTOs.Response;
 using EcoBin_GateWay_Service.Services.Contracts;
 
@@ -42,6 +43,14 @@ public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
     {
         var url = $"{_baseUrl}/user-auth/RoleId/get-role-id";
         var response = GetAsync<IEnumerable<RoleIdResponseDto>>(url);
+        ArgumentNullException.ThrowIfNull(response);
+        return response;
+    }
+
+    public async Task<AuthDto> PostRefreshTokenAsync(RefreshTokenRequestDto request)
+    {
+        var url = $"{_baseUrl}/user-auth/Auth/refresh-token";
+        var response = await PostAsync<RefreshTokenRequestDto, AuthDto>(url, request);
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }
