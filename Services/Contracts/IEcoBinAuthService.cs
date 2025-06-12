@@ -9,7 +9,7 @@ public interface IEcoBinAuthService : IHttpClientBase
 {
     Task<SignupResponseDto> SignupAsync(SignupRequestDto signupRequestDto);
     Task<AuthDto> LoginAsync(LoginRequestDto loginRequest);
-    Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(Guid roleId);
+    Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(RegistrationKeyRequestDto registrationKeyRequestDto);
     Task<IEnumerable<RoleIdResponseDto>?> GetRoleIdAsync();
     Task<AuthDto> PostRefreshTokenAsync(RefreshTokenRequestDto request);
 }

@@ -31,10 +31,10 @@ public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
         return response;
     }
 
-    public async Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(Guid roleId)
+    public async Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(RegistrationKeyRequestDto registrationKeyRequestDto)
     {
         var url = $"{_baseUrl}/user-auth/RegistrationKey/create";
-        var response = await PostAsync<Guid, RegistrationKeyResponseDto>(url, roleId);
+        var response = await PostAsync<RegistrationKeyRequestDto, RegistrationKeyResponseDto>(url, registrationKeyRequestDto);
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }

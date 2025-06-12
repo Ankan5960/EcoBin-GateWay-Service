@@ -15,6 +15,7 @@ public class AuthDto
     public Guid RoleId { get; set; }
 
     public string RoleName { get; set; } = string.Empty;
+    public string? AreaOfService { get; set; } = string.Empty;
 
     public string AccessToken { get; set; } = string.Empty;
 

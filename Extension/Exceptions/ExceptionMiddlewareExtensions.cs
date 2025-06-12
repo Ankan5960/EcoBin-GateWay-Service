@@ -25,6 +25,7 @@ public static class ExceptionMiddlewareExtensions
                         BadRequestException => StatusCodes.Status400BadRequest,
                         UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
                         InvalidOperationException => StatusCodes.Status400BadRequest,
+                        HttpRequestException httpEx when httpEx.StatusCode.HasValue => (int)httpEx.StatusCode.Value,
                         _ => StatusCodes.Status500InternalServerError
                     };
 
