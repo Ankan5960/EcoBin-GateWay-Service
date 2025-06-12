@@ -36,7 +36,7 @@ public class EcoBinAuthServiceController : ControllerBase
         if (requestDto.RoleId == Guid.Empty)
             throw new BadRequestException("Role ID is required.");
 
-        var res = await _serviceManager.EcoBinAuthService.CreateRegistrationKeyAsync(requestDto.RoleId);
+        var res = await _serviceManager.EcoBinAuthService.CreateRegistrationKeyAsync(requestDto);
         return Ok(res);
     }
 
