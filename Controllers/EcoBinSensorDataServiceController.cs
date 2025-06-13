@@ -52,28 +52,14 @@ public class EcoBinSensorDataServiceController : ControllerBase
     [HttpPost("/api/sensor-data/update-location-data")]
     public async Task<IActionResult> UpdateLocationData([FromBody] UpdateLocationDataRequestDto updateLocationDataRequestDto)
     {
-        try
-        {
-            var response = await _serviceManager.EcoBinSensorDataService.UpdateLocationDataAsync(updateLocationDataRequestDto);
-            return Ok(response);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var response = await _serviceManager.EcoBinSensorDataService.UpdateLocationDataAsync(updateLocationDataRequestDto);
+        return Ok(response);
     }
 
     [HttpPost("/api/sensor-data/update-sensor-data")]
     public async Task<IActionResult> UpdateSensorData([FromBody] UpdateSensorDataRequestDto updateSensorDataDto)
     {
-        try
-        {
-            var response = await _serviceManager.EcoBinSensorDataService.UpdateSensorDataAsync(updateSensorDataDto);
-            return Ok(response);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var response = await _serviceManager.EcoBinSensorDataService.UpdateSensorDataAsync(updateSensorDataDto);
+        return Ok(response);
     }
 }
