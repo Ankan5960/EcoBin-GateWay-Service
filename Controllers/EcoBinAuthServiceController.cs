@@ -30,13 +30,13 @@ public class EcoBinAuthServiceController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("/api/user-auth/RegistrationKey/create")]
+    [HttpPost("/api/user-auth/registrationKey/create")]
     public async Task<IActionResult> CreateRegistrationKey([FromBody] RegistrationKeyRequestDto requestDto)
     {
         if (requestDto.RoleId == Guid.Empty)
             throw new BadRequestException("Role ID is required.");
 
-        var res = await _serviceManager.EcoBinAuthService.CreateRegistrationKeyAsync(requestDto.RoleId);
+        var res = await _serviceManager.EcoBinAuthService.CreateRegistrationKeyAsync(requestDto);
         return Ok(res);
     }
 
@@ -44,6 +44,20 @@ public class EcoBinAuthServiceController : ControllerBase
     public async Task<IActionResult> GetRoleId()
     {
         var res = await _serviceManager.EcoBinAuthService.GetRoleIdAsync();
+        return Ok(res);
+    }
+
+    [HttpPost("/api/user-auth/auth/refresh-token")]
+    public async Task<IActionResult> PostRefreshToken([FromBody] RefreshTokenRequestDto request)
+    {
+        var res = await _serviceManager.EcoBinAuthService.PostRefreshTokenAsync(request);
+        return Ok(res);
+    }
+
+    [HttpPost("/api/user-auth/auth/logout")]
+    public async Task<IActionResult> Logout([FromBody] LogoutRequestDto request)
+    {
+        var res = await _serviceManager.EcoBinAuthService.LogoutAsync(request);
         return Ok(res);
     }
 }

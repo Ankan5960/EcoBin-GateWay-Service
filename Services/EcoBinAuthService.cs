@@ -1,5 +1,6 @@
 using EcoBin_GateWay_Service.DTOs.Requests;
 using EcoBin_GateWay_Service.Model.DTOs;
+using EcoBin_GateWay_Service.Model.DTOs.Requests;
 using EcoBin_GateWay_Service.Model.DTOs.Response;
 using EcoBin_GateWay_Service.Services.Contracts;
 
@@ -30,10 +31,10 @@ public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
         return response;
     }
 
-    public async Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(Guid roleId)
+    public async Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(RegistrationKeyRequestDto registrationKeyRequestDto)
     {
         var url = $"{_baseUrl}/user-auth/RegistrationKey/create";
-        var response = await PostAsync<Guid, RegistrationKeyResponseDto>(url, roleId);
+        var response = await PostAsync<RegistrationKeyRequestDto, RegistrationKeyResponseDto>(url, registrationKeyRequestDto);
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }
@@ -42,6 +43,22 @@ public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
     {
         var url = $"{_baseUrl}/user-auth/RoleId/get-role-id";
         var response = GetAsync<IEnumerable<RoleIdResponseDto>>(url);
+        ArgumentNullException.ThrowIfNull(response);
+        return response;
+    }
+
+    public async Task<AuthDto> PostRefreshTokenAsync(RefreshTokenRequestDto request)
+    {
+        var url = $"{_baseUrl}/user-auth/Auth/refresh-token";
+        var response = await PostAsync<RefreshTokenRequestDto, AuthDto>(url, request);
+        ArgumentNullException.ThrowIfNull(response);
+        return response;
+    }
+
+    public async Task<LogoutResponseDto> LogoutAsync(LogoutRequestDto request)
+    {
+        var url = $"{_baseUrl}/user-auth/Logout/logout";
+        var response = await PostAsync<LogoutRequestDto, LogoutResponseDto>(url, request);
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }
