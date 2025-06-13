@@ -30,7 +30,7 @@ public class EcoBinAuthServiceController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("/api/user-auth/RegistrationKey/create")]
+    [HttpPost("/api/user-auth/registrationKey/create")]
     public async Task<IActionResult> CreateRegistrationKey([FromBody] RegistrationKeyRequestDto requestDto)
     {
         if (requestDto.RoleId == Guid.Empty)
@@ -47,14 +47,14 @@ public class EcoBinAuthServiceController : ControllerBase
         return Ok(res);
     }
 
-    [HttpPost("/api/user-auth/Auth/refresh-token")]
+    [HttpPost("/api/user-auth/auth/refresh-token")]
     public async Task<IActionResult> PostRefreshToken([FromBody] RefreshTokenRequestDto request)
     {
         var res = await _serviceManager.EcoBinAuthService.PostRefreshTokenAsync(request);
         return Ok(res);
     }
 
-    [HttpPost("/api/user-auth/Auth/logout")]
+    [HttpPost("/api/user-auth/auth/logout")]
     public async Task<IActionResult> Logout([FromBody] LogoutRequestDto request)
     {
         var res = await _serviceManager.EcoBinAuthService.LogoutAsync(request);
