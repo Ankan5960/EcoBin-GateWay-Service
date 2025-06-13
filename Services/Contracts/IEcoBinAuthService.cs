@@ -12,4 +12,5 @@ public interface IEcoBinAuthService : IHttpClientBase
     Task<RegistrationKeyResponseDto?> CreateRegistrationKeyAsync(RegistrationKeyRequestDto registrationKeyRequestDto);
     Task<IEnumerable<RoleIdResponseDto>?> GetRoleIdAsync();
     Task<AuthDto> PostRefreshTokenAsync(RefreshTokenRequestDto request);
+    Task<LogoutResponseDto> LogoutAsync(LogoutRequestDto request);
 }

@@ -54,4 +54,12 @@ public class EcoBinAuthService : HttpClientBase, IEcoBinAuthService
         ArgumentNullException.ThrowIfNull(response);
         return response;
     }
+
+    public async Task<LogoutResponseDto> LogoutAsync(LogoutRequestDto request)
+    {
+        var url = $"{_baseUrl}/user-auth/Logout/logout";
+        var response = await PostAsync<LogoutRequestDto, LogoutResponseDto>(url, request);
+        ArgumentNullException.ThrowIfNull(response);
+        return response;
+    }
 }

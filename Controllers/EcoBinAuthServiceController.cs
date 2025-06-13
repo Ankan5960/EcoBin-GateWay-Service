@@ -53,4 +53,11 @@ public class EcoBinAuthServiceController : ControllerBase
         var res = await _serviceManager.EcoBinAuthService.PostRefreshTokenAsync(request);
         return Ok(res);
     }
+
+    [HttpPost("/api/user-auth/Auth/logout")]
+    public async Task<IActionResult> Logout([FromBody] LogoutRequestDto request)
+    {
+        var res = await _serviceManager.EcoBinAuthService.LogoutAsync(request);
+        return Ok(res);
+    }
 }
