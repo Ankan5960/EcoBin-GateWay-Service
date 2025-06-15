@@ -88,7 +88,7 @@ public class EcoBinSensorDataService : HttpClientBase, IEcoBinSensorDataService
 
     public async Task<UpdateSensorDataResponseDto> UpdateSensorDataAsync(UpdateSensorDataRequestDto updateSensorDataDto)
     {
-        var url = $"{_baseUrl}/api/SensorData/update-location-data";
+        var url = $"{_baseUrl}/api/SensorData/update-sensor-data";
         var response = await PostAsync<UpdateSensorDataRequestDto, UpdateSensorDataResponseDto>(url, updateSensorDataDto);
         ArgumentNullException.ThrowIfNull(response);
         return response;
